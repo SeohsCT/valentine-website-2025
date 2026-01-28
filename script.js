@@ -56,7 +56,7 @@ function moveButton(button) {
 }
 
 function celebrate() {
-    // Hide the question and the "Mahal koo" title
+    // Hide the question and the name header
     document.getElementById('question1').classList.add('hidden');
     document.getElementById('valentineTitle').classList.add('hidden');
     
@@ -67,21 +67,27 @@ function celebrate() {
     
     const messageElement = document.getElementById('celebrationMessage');
     
-    // Convert text links to actual clickable <a> tags
+    // Convert text links to clickable <a> tags
     const rawMessage = config.celebration.message;
     const linkedMessage = rawMessage.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" style="color: #ff4757; text-decoration: underline;">$1</a>');
     
     messageElement.innerHTML = linkedMessage;
     
-    // Styles to match your requested layout
+    // --- SUCCESS PAGE STYLING ---
     messageElement.style.fontSize = "1rem";
-    messageElement.style.textAlign = "left"; // Matches the document look
-    messageElement.style.display = "inline-block";
+    messageElement.style.textAlign = "left";
+    messageElement.style.display = "block"; // Changed to block for better margin control
     messageElement.style.margin = "20px auto";
-    messageElement.style.whiteSpace = "pre-line"; // Preserves the line breaks from config
+    messageElement.style.paddingLeft = "20px"; // Indent for the whole block
+    messageElement.style.whiteSpace = "pre-line"; 
+    messageElement.style.lineHeight = "1.8"; // Increased line spacing
     messageElement.style.animation = "none";
-    
-    document.getElementById('celebrationEmojis').textContent = config.celebration.emojis;
+    messageElement.style.maxWidth = "90%"; // Keeps it from hitting the edges
+
+    // --- GIF IMPLEMENTATION ---
+    const emojiContainer = document.getElementById('celebrationEmojis');
+    // Replace the text emojis with an image tag for your GIF
+    emojiContainer.innerHTML = '<img src="https://tenor.com/sz6dVMsylTa.gif" alt="Celebration GIF" style="width: 150px; height: auto; border-radius: 10px; margin-top: 20px;">';
     
     createHeartExplosion();
 }
@@ -95,23 +101,4 @@ function createHeartExplosion() {
         document.querySelector('.floating-elements').appendChild(heart);
         setRandomPosition(heart);
     }
-}
-
-function setupMusicPlayer() {
-    const bgMusic = document.getElementById('bgMusic');
-    const musicSource = document.getElementById('musicSource');
-    const musicToggle = document.getElementById('musicToggle');
-    if (!config.music.enabled) return;
-    musicSource.src = config.music.musicUrl;
-    bgMusic.volume = config.music.volume || 0.5;
-    bgMusic.load();
-    musicToggle.addEventListener('click', () => {
-        if (bgMusic.paused) {
-            bgMusic.play();
-            musicToggle.textContent = config.music.stopText;
-        } else {
-            bgMusic.pause();
-            musicToggle.textContent = config.music.startText;
-        }
-    });
 }
