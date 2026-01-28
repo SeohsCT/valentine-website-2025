@@ -22,7 +22,7 @@ const CONFIG = {
     // Customize each question and its possible responses
     questions: {
         first: {
-            text: "Will you be my Valentine on February 14th, 2026? 🌹",                                    // First interaction
+            text: "Will you be my Valentine on February 16th, 2026? 🌹",                                    // First interaction
             yesBtn: "Yes!",                                             // Text for "Yes" button
             noBtn: "No",                                               // Text for "No" button
         }
@@ -37,11 +37,21 @@ const CONFIG = {
     },
 
     // Messages that appear after they say "Yes!"
-    celebration: {
-        title: "Yippie! I'm so so saur excited my loveee💓",
-        message: "Tentative Day: February 16, 2026 Location: Tomas Morato Itenerary: Post Ceremony Café and Photoshoot (4pm) Dinner at SomeThai (7pm) *back up restaurant is wangfu in case maraming tao since michelin guide resto siya* Get Home by 9pm",
-        emojis: "🖤🤍🎁💖💕"  // These will bounce around
-    },
+   celebration: {
+    title: "Yippie! I'm so so saur excited my loveee 💓",
+    // We use a specific structure here to make it easier for the script to build the list
+    message: `Tentative Day: February 16, 2026
+Location: Tomas Morato
+Itinerary:
+• Post Ceremony Café w/ Photoshoot (4pm)
+• Dinner at SomeThai (7pm) *backup restaurant: Wangfu in case maraming tao since michelin guide resto ang SomeThai*
+• Get Home by 9pm
+Outfit Theme: Dark colors
+
+Café preview: https://www.tiktok.com/@coffeearchitect/video/7582903047009881365
+Resto preview: https://www.tiktok.com/@eatspashandmaui/video/7397019795901648129`,
+    emojis: "🖤🤍🎁💖💕"
+},
 
     // Color scheme for the website
     // Use https://colorhunt.co or https://coolors.co to find beautiful color combinations
