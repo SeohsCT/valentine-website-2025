@@ -1,5 +1,6 @@
 const config = window.VALENTINE_CONFIG;
 
+// Validate configuration
 function validateConfig() {
     if (!config.valentineName) config.valentineName = "Ally";
 }
@@ -9,8 +10,8 @@ document.title = config.pageTitle;
 window.addEventListener('DOMContentLoaded', () => {
     validateConfig();
 
-    // Set Name and Question 1
-    document.getElementById('valentineTitle').textContent = `${config.valentineName}, mahal kooo...`;
+    // Set Name and Question
+    document.getElementById('valentineTitle').textContent = `${config.valentineName}, mahal koooo...`;
     document.getElementById('question1Text').textContent = config.questions.first.text;
     document.getElementById('yesBtn1').textContent = config.questions.first.yesBtn;
     document.getElementById('noBtn1').textContent = config.questions.first.noBtn;
@@ -22,29 +23,39 @@ window.addEventListener('DOMContentLoaded', () => {
     const noBtn = document.getElementById('noBtn1');
     noBtn.addEventListener('click', () => moveButton(noBtn));
 
+    // Create initial floating elements using the original logic
     createFloatingElements();
     setupMusicPlayer();
 });
 
-// Create the background floating emojis
+// Restored Original Floating Logic
 function createFloatingElements() {
     const container = document.querySelector('.floating-elements');
     
-    // Combine hearts and bears for the background
-    const allEmojis = [...config.floatingEmojis.hearts, ...config.floatingEmojis.bears];
-    
-    allEmojis.forEach(emoji => {
+    // Create hearts
+    config.floatingEmojis.hearts.forEach(heart => {
         const div = document.createElement('div');
-        div.className = 'floating-emoji'; 
-        div.innerHTML = emoji;
+        div.className = 'heart'; // Original class name
+        div.innerHTML = heart;
+        setRandomPosition(div);
+        container.appendChild(div);
+    });
+
+    // Create bears (and your dinosaurs/cats/dogs)
+    config.floatingEmojis.bears.forEach(bear => {
+        const div = document.createElement('div');
+        div.className = 'bear'; // Original class name
+        div.innerHTML = bear;
         setRandomPosition(div);
         container.appendChild(div);
     });
 }
 
+// Restored Original Random Position Logic
 function setRandomPosition(element) {
     element.style.left = Math.random() * 100 + 'vw';
-    element.style.top = Math.random() * 100 + 'vh'; // Random start height
+    // This ensures they don't start in a straight line
+    element.style.top = Math.random() * 100 + 'vh'; 
     element.style.animationDelay = Math.random() * 5 + 's';
     element.style.animationDuration = 10 + Math.random() * 20 + 's';
 }
@@ -58,24 +69,21 @@ function moveButton(button) {
 }
 
 function celebrate() {
-    // Hide the question
     document.getElementById('question1').classList.add('hidden');
     
     const celebration = document.getElementById('celebration');
     celebration.classList.remove('hidden');
     
-    // Set titles
     document.getElementById('celebrationTitle').textContent = config.celebration.title;
     
-    // Handle itinerary text
     const messageElement = document.getElementById('celebrationMessage');
     messageElement.innerText = config.celebration.message;
     
-    // Apply specific styles for the itinerary to make it smaller and static
-    messageElement.style.fontSize = "1.2rem"; 
+    // Custom styling for the itinerary to keep it readable and static
+    messageElement.style.fontSize = "1.1rem"; 
     messageElement.style.fontWeight = "normal";
-    messageElement.style.lineHeight = "1.6";
-    messageElement.style.animation = "none"; // Stop the bouncing/animation
+    messageElement.style.animation = "none"; 
+    messageElement.style.lineHeight = "1.5";
     messageElement.style.marginTop = "20px";
 
     document.getElementById('celebrationEmojis').textContent = config.celebration.emojis;
@@ -84,13 +92,12 @@ function celebrate() {
 }
 
 function createHeartExplosion() {
-    const container = document.querySelector('.floating-elements');
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 50; i++) {
         const heart = document.createElement('div');
-        const emojis = config.floatingEmojis.hearts;
-        heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-        heart.className = 'floating-emoji';
-        container.appendChild(heart);
+        const randomHeart = config.floatingEmojis.hearts[Math.floor(Math.random() * config.floatingEmojis.hearts.length)];
+        heart.innerHTML = randomHeart;
+        heart.className = 'heart';
+        document.querySelector('.floating-elements').appendChild(heart);
         setRandomPosition(heart);
     }
 }
@@ -100,10 +107,10 @@ function setupMusicPlayer() {
     const musicSource = document.getElementById('musicSource');
     const musicToggle = document.getElementById('musicToggle');
 
-    if (!config.music || !config.music.enabled) return;
+    if (!config.music.enabled) return;
 
     musicSource.src = config.music.musicUrl;
-    bgMusic.volume = config.music.volume;
+    bgMusic.volume = config.music.volume || 0.5;
     bgMusic.load();
 
     musicToggle.addEventListener('click', () => {
