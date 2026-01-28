@@ -102,7 +102,7 @@ function celebrate() {
 
     // GIF Fix with Direct Media Link
     const emojiContainer = document.getElementById('celebrationEmojis');
-    emojiContainer.innerHTML = '<img src="https://media.tenor.com/sz6dVMsylTaAAAAC/mochi-mochi-peach-cat-cat.gif" class="celebration-gif" alt="Celebration GIF" style="width: 140px; height: auto; border-radius: 10px; margin-top: 10px;">';
+    emojiContainer.innerHTML = '<img src="imgi_1_hands-double-five.gif" class="celebration-gif" alt="Celebration GIF" style="width: 140px; height: auto; border-radius: 10px; margin-top: 10px;">';
     
     createHeartExplosion();
 }
