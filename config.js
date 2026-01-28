@@ -43,9 +43,9 @@ const CONFIG = {
     message: `Tentative Day: February 16, 2026
 Location: Tomas Morato
 Itinerary:
-• Post Ceremony Café w/ Photoshoot (4pm)
-• Dinner at SomeThai (7pm) *backup restaurant: Wangfu in case maraming tao since michelin guide resto ang SomeThai*
-• Get Home by 9pm
+   • Post Ceremony Café w/ Photoshoot (4pm)
+   • Dinner at SomeThai (7pm)
+   • Get Home by 9pm
 Outfit Theme: Dark colors
 
 Café preview: https://www.tiktok.com/@coffeearchitect/video/7582903047009881365
@@ -71,17 +71,6 @@ Resto preview: https://www.tiktok.com/@eatspashandmaui/video/7397019795901648129
         bounceSpeed: "0.5s",            // Speed of bouncing animations (0.3-0.7s recommended)
         heartExplosionSize: 1.5         // Size of heart explosion effect (1.2-2.0 recommended)
     },
-
-    // Background Music (Optional)
-    // Add your own music URL after getting proper licenses
-    music: {
-        enabled: true,                     // Music feature is enabled
-        autoplay: true,                    // Try to autoplay (note: some browsers may block this)
-        musicUrl: "https://res.cloudinary.com/dncywqfpb/video/upload/v1738399057/music_qrhjvy.mp3", // Music streaming URL
-        startText: "🎵 Play Music",        // Button text to start music
-        stopText: "🔇 Stop Music",         // Button text to stop music
-        volume: 0.5                        // Volume level (0.0 to 1.0)
-    }
 };
 
 // Don't modify anything below this line unless you know what you're doing
